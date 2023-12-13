@@ -6,9 +6,7 @@ class Node:
         self.r_child = r_child
 
     def __str__(self):
-        print(
-            f"Val: {self.val} - L_Child: {self.l_child.val} - R_Child: {self.r_child.val}"
-        )
+        return f"Val: {self.val} - L_Child: {self.l_child} - R_Child: {self.r_child} - Father: {self.father}"
 
 
 class BinaryTree:
@@ -37,6 +35,7 @@ class BinaryTree:
     def attach(self, val):
         if self.empty():
             self.root = Node(val)
+            print("Root Created!")
             return
 
         node = self._recur_search(self.root, val)
@@ -109,6 +108,7 @@ if __name__ == "__main__":
     bt.attach(8)
     bt.display()
     bt.attach(3)
+    print(bt.root)
     bt.display()
     bt.attach(5)
     bt.display()
