@@ -30,6 +30,25 @@ class SinglyLinkedList:
             new_node.next = self.head
             self.head = new_node
 
+    def remove(self, val):
+        cur = self.head
+        if cur.val == val:
+            self.head = self.head.next
+            # Python GC will take care of it
+            return
+
+        cur_prev = cur
+        cur = cur.next
+
+        while cur != None:
+            if cur.val == val:
+                cur_prev.next = cur.next
+                # Python GC will take care of it
+                return
+
+            cur_prev = cur
+            cur = cur.next
+
     def display(self):
         current = self.head
         while current != None:
@@ -44,4 +63,10 @@ if __name__ == "__main__":
     sll.append(2)
     sll.append(3)
     sll.prepend(4)
+    sll.display()
+    sll.remove(3)
+    sll.display()
+    sll.remove(1)
+    sll.display()
+    sll.remove(4)
     sll.display()

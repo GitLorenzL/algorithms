@@ -45,6 +45,23 @@ class DoublyLinkedList:
         behind_this.next = new_node
         behind_this.next.next.prev = new_node
 
+    def remove(self, val):
+        cur = self.head
+        if cur.val == val:
+            self.tail.next = self.head.next
+            self.head = self.head.next
+            self.head.prev = self.tail
+            # Python GC will take care of it
+            return
+
+        cur = cur.next
+        while cur != self.head:
+            if cur.val == val:
+                cur.prev.next = cur.next
+                cur.next.prev = cur.prev
+
+            cur = cur.next
+
     def search(self, val) -> bool:
         cur = self.head
         if cur.val == val:
@@ -79,6 +96,10 @@ if __name__ == "__main__":
     dll.append(3)
     dll.prepend(4)
     dll.insert(10, 2)
+    dll.display()
+    dll.remove(1)
+    dll.display()
+    dll.remove(10)
     dll.display()
 
     cur = dll.head
